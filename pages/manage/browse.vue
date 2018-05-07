@@ -1,7 +1,7 @@
 <template>
 	<div class="content">
 		<app-title :title="title"></app-title>
-		<app-navigation :backHref="backHref" :nextHref="nextHref"></app-navigation>
+		<app-navigation :backHref="backHref"></app-navigation>
 		<input type="text"><span id="add-player" class="add-btn">+</span>
 		<ul id="players-list">
 			<li v-for="player in players" :key="player.id" :data-id="player.id">
@@ -19,7 +19,7 @@ var jsonfile = require("jsonfile");
 var players = require("~/assets/json/players.json");
 
 export default {
-  layout: "setup",
+  layout: "manage",
   components: {
     "app-title": title,
     "app-navigation": navigation
@@ -28,8 +28,7 @@ export default {
     return {
       players,
       backHref: "/",
-      nextHref: "teams",
-      title: "Qui joue?"
+      title: "Éditeur"
     };
   },
   mounted() {

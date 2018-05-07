@@ -1,7 +1,7 @@
 <template>
   <div class="navigation">
 	<a :href="backHref"><div id="back" class="btn">BACK</div></a>
-    <a :href="nextHref"><div id="ok" class="btn">GO</div></a>
+    <a v-if="nextHref" :href="nextHref"><div id="ok" class="btn">GO</div></a>
   </div>
 </template>
 
