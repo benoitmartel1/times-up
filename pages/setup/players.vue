@@ -15,6 +15,7 @@
 import title from "~/components/title.vue";
 import navigation from "~/components/navigation.vue";
 
+var jsonfile = require("jsonfile");
 var players = require("~/assets/json/players.json");
 
 export default {
@@ -38,17 +39,15 @@ export default {
         id: getNextValue(players, "id")
       };
       players.push(newPlayer);
+      updateJsonFile("~/assets/json/players.json", players);
     });
     console.log(players);
   }
 };
-function getNextValue(arr, param) {
-  var res = Math.max.apply(
-    Math,
-    arr.map(function(a) {
-      return a[param];
-    })
-  );
-  return ++res;
+
+function updateJsonFile(file, data) {
+  jsonfile.writeFile(file, data, function(err) {
+    console.error(err);
+  });
 }
 </script>

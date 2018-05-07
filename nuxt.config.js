@@ -18,6 +18,9 @@ module.exports = {
         src: "https://code.jquery.com/jquery-3.3.1.slim.min.js",
         integrity: "sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=",
         crossorigin: "anonymous"
+      },
+      {
+        src: "/js/routines.js"
       }
     ]
   },
@@ -41,6 +44,10 @@ module.exports = {
           loader: "eslint-loader",
           exclude: /(node_modules)/
         });
+
+        config.node = {
+          fs: "empty"
+        };
       }
     }
   }

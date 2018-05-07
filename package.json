@@ -13,10 +13,10 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "fs": "0.0.1-security",
     "jquery": "^3.3.1",
-    "json": "^9.0.6",
-    "nuxt": "^1.0.0",
-    "write-json": "^3.0.1"
+    "jsonfile": "^4.0.0",
+    "nuxt": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
