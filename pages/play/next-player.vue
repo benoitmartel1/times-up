@@ -1,6 +1,6 @@
 <template>
 <div>
-	<navigation :backHref="backHref" :nextHref="nextHref" :nextClicked="nextClicked"></navigation>
+	<navigation :backHref="backHref" :nextHref="nextHref"></navigation>
 </div>
 </template>
 
@@ -12,13 +12,12 @@ export default {
   components: { navigation },
   data() {
     return {
-      backHref: "teams",
+      backHref: "team-name",
       nextHref: "/play/round"
     };
   },
-  beforeRouteLeave(to, from, next) {
-    this.$store.commit("cards/initMasterDeck");
-    next();
+  mounted() {
+    this.$store.commit("cards/fillGameDeck");
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="navigation">
-	<a :href="backHref"><div id="back" class="btn">BACK</div></a>
-    <a v-if="nextHref" :href="nextHref"><div id="ok" class="btn">GO</div></a>
+	<router-link v-if="backHref" :to="backHref"  id="back" class="btn">BACK</router-link>
+    <router-link v-if="nextHref"  :to="nextHref"  id="next" class="btn">GO</router-link>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
 #back {
   float: left;
 }
-#ok {
+#next {
   float: right;
 }
 </style>

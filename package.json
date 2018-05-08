@@ -16,7 +16,9 @@
     "fs": "0.0.1-security",
     "jquery": "^3.3.1",
     "jsonfile": "^4.0.0",
-    "nuxt": "^1.0.0"
+    "nuxt": "^1.0.0",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
