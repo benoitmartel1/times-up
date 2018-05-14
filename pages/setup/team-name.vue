@@ -2,8 +2,8 @@
 <div>
 	<app-title :title="'Équipe '+currentTeamNb"></app-title>
 	<app-navigation :backHref="backHref" :nextHref="nextHref"></app-navigation>
-	<label for="name"><input type="text" id="name" placeholder="" :val="currentTeamData().name"></label>
-	<ul><li v-for="player of currentTeamData().players" :key="player">{{ player.name}}</li></ul>
+	<label for="name"><input type="text" id="name" placeholder="" :value="currentTeamData().name"></label>
+	<ul><li v-for="player of currentTeamData().players" :key="player.name">{{ player.name}}</li></ul>
 </div>
 </template>
 
@@ -47,10 +47,11 @@ export default {
         e.preventDefault();
         this.setTeamName($("input#name").val());
         $("input#name").val("");
-        this.currentTeam++;
-        if (this.currentTeam == this.teams.length) {
+        if (this.currentTeam + 1 == this.teams.length) {
           this.$router.push("settings");
+          return;
         }
+        this.currentTeam++;
       }.bind(this)
     );
     $("#back").click(

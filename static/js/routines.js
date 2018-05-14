@@ -27,3 +27,17 @@ function getQueryVariable(variable) {
   }
   return false;
 }
+
+function getUniqueId(arr, key) {
+  if (arr.length > 0) {
+    var highest = Math.max.apply(
+      Math,
+      arr.map(function(o) {
+        return o[key];
+      })
+    );
+    return parseInt(highest) + 1;
+  } else {
+    return 0;
+  }
+}

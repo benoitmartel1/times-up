@@ -2,7 +2,8 @@
 <div>
 	<navigation :nextHref="nextHref"></navigation>
 	<div>Round {{ current.round }}</div>
-	<div>Au tour des : {{nextTeam }}</div>
+	<div>Au tour de : {{ nextPlayer }}</div>
+		<div>de l'équipe des : {{ nextTeam }}</div>
 </div>
 </template>
 
@@ -22,6 +23,11 @@ export default {
   computed: {
     nextTeam: function() {
       return this.$store.state.teams.teams[this.current.team].name;
+    },
+    nextPlayer: function() {
+      var next = this.$store.state.teams.teams[this.current.team].nextPlayer;
+      return this.$store.state.teams.teams[this.current.team].players[next]
+        .name;
     }
   },
 

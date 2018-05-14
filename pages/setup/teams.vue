@@ -1,9 +1,12 @@
 <template>
 <div>
 	<navigation :backHref="backHref" :nextHref="nextHref"></navigation>
-	<ul class="team" v-for="(team, index) in tempTeams" :key="team">Équipe {{ ++index }}
-		<li v-for="player in team.players" :key="player">{{ player.name }}</li>
+	<ul class="team" v-for="(team, index) in teams" :key="team.name">Équipe {{ ++index }}
+		<li v-for="player in team.players" :key="player.name">{{ player.name }}</li>
 	</ul>
+	<button id="shuffle" @click="doShuffle()">Shuffle</button>
+	<button v-if="enoughPlayers()" id="2"  @click="changeTeamNumber(2)">2</button>
+	<button v-if="enoughPlayers()" id="3" @click="changeTeamNumber(3)">3</button>
 </div>
 </template>
 
@@ -17,29 +20,26 @@ export default {
     return {
       players: this.$store.state.players,
       backHref: "players",
-      nextHref: "team-name"
+      nextHref: "team-name",
+      nbOfTeam: this.$store.state.teams.nbOfTeams
     };
   },
-  computed: {
-    tempTeams: function() {
-      var teamNb = 2;
-      var tempTeams = [];
-      for (var n = 0; n < teamNb; n++) {
-        var name = n + 1;
-        tempTeams[n] = { name: name.toString(), players: [] };
-      }
-      var t = 0;
-      shuffle(this.players);
-      for (var p = 0; p < this.players.length; p++) {
-        t = Math.floor(p / (this.players.length / teamNb));
-        tempTeams[t].players.push(this.players[p]);
-      }
-      return tempTeams;
+  methods: {
+    enoughPlayers() {
+      return this.$store.state.players.length > 5;
+    },
+    doShuffle() {
+      this.$store.commit("teams/split", this.players);
+    },
+    changeTeamNumber(nb) {
+      var players = this.players;
+      this.$store.dispatch("teams/newTeamNumber", { nb, players });
     }
   },
-  beforeRouteLeave(to, from, next) {
-    this.$store.commit("teams/createTeams", this.tempTeams);
-    next();
+  computed: {
+    teams: function() {
+      return this.$store.state.teams.teams;
+    }
   }
 };
 </script>
