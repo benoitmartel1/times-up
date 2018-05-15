@@ -1,23 +1,28 @@
 <template>
-<div>
-	<navigation :backHref="backHref" :nextHref="nextHref"></navigation>
-</div>
+	<div>
+		<navigation :backHref="backHref" :nextHref="nextHref"></navigation>
+			<div class="container">
+				<div>Au tour de : {{ current.player }}</div>
+				<div>de l'équipe des : {{ current.team }}</div>
+			</div>
+	</div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import navigation from "~/components/navigation.vue";
 
 export default {
-  layout: "setup",
+  layout: "play",
   components: { navigation },
   data() {
     return {
-      backHref: "team-name",
-      nextHref: "/play/round"
+      //backHref: "team-name",
+      nextHref: "/play/card"
     };
   },
-  mounted() {
-    this.$store.commit("cards/fillGameDeck");
+  computed: {
+    ...mapGetters({ current: "current" })
   }
 };
 </script>

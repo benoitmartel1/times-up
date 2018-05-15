@@ -4,7 +4,7 @@
 	<ul class="team" v-for="(team, index) in teams" :key="team.name">Équipe {{ ++index }}
 		<li v-for="player in team.players" :key="player.name">{{ player.name }}</li>
 	</ul>
-	<button id="shuffle" @click="doShuffle()">Shuffle</button>
+	<button id="shuffle" @click="doShuffle">Shuffle</button>
 	<button v-if="enoughPlayers()" id="2"  @click="changeTeamNumber(2)">2</button>
 	<button v-if="enoughPlayers()" id="3" @click="changeTeamNumber(3)">3</button>
 </div>

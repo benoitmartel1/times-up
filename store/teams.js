@@ -4,17 +4,6 @@ export const state = () => ({
 });
 
 export const mutations = {
-  createTeams(state, teams) {
-    state.teams = [];
-    for (let team of teams) {
-      state.teams.push({
-        name: team.name,
-        players: team.players,
-        hitCards: [],
-        nextPlayer: 0
-      });
-    }
-  },
   setTeamNumber(state, nb) {
     state.nbOfTeams = nb;
   },
@@ -25,12 +14,17 @@ export const mutations = {
     //clear created teams
     state.teams = [];
     var nb = state.nbOfTeams;
-    console.log(nb);
+
     //create empty team arrays
     for (var n = 0; n < nb; n++) {
       var name = n + 1;
 
-      state.teams[n] = { name: name.toString(), players: [] };
+      state.teams[n] = {
+        name: name.toString(),
+        players: [],
+        hitCards: [],
+        nextPlayer: 0
+      };
     }
 
     //Shuffle players
@@ -45,9 +39,9 @@ export const mutations = {
     }
   }
 };
+
 export const actions = {
   newTeamNumber(state, payload) {
-    console.log("PLAYERS ARE" + payload.nb);
     state.commit("setTeamNumber", payload.nb);
     state.commit("split", payload.players);
   }

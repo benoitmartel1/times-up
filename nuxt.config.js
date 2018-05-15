@@ -32,6 +32,7 @@ module.exports = {
   /*
   ** Build configuration
   */
+  plugins: ["~/plugins/vue2-touch-events"],
   build: {
     /*
     ** Run ESLint on save

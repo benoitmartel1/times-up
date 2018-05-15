@@ -2,7 +2,7 @@
 	<div class="content">
 		<app-title :title="title"></app-title>
 		<app-navigation :backHref="backHref" :nextHref="nextHref"></app-navigation>
-		<app-popup :title="popTitle" :message="popMessage" :showMe="showPopup" @hideMe="closePopup()"></app-popup>
+		<app-popup :title="popTitle" :message="popMessage" :showMe="showPopup" @hideMe="closePopup"></app-popup>
 		<input type="text"><span id="add-player" class="add-btn">+</span>
 		<ul id="players-list">
 			<li v-if="players.length > 0" v-for="player in players" :key="player.id" :data-id="player.id">
